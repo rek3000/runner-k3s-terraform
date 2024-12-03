@@ -7,30 +7,11 @@ variable "k3s_version" {
   default     = "latest"
 }
 
-variable "k3s_token" {
-  description = "K3s token"
-  type        = string
-  default     = "k3s-local"
-}
-
-variable "k3s_worker_count" {
-  description = "K3s worker"
-  type        = number
-  default     = 2
-}
-
-variable "server_name" {
-  description = "K3s server_name"
-  type        = string
-  default     = "k3s-local"
-}
-
-
 ###########################################################
 # GITHUB RUNNER VARIABLES
 ###########################################################
-variable "github_pat" {
-  description = "GitHub Personal Access Token"
+variable "github_runner_token" {
+  description = "GitHub Runner Token"
   type        = string
   sensitive   = true
 }
@@ -67,14 +48,14 @@ variable "docker_network_cidr" {
   default     = "172.20.0.0/16"
 }
 
-variable "runner_resources" {
-  description = "Resource limits for runners"
-  type = object({
-    cpu    = number
-    memory = number
-  })
-  default = {
-    cpu    = 2
-    memory = 4096
-  }
-}
+# variable "runner_resources" {
+#   description = "Resource limits for runners"
+#   type = object({
+#     cpu    = number
+#     memory = number
+#   })
+#   default = {
+#     cpu    = 2
+#     memory = 4096
+#   }
+# }
