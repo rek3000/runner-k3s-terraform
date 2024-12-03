@@ -56,14 +56,5 @@ terraform destroy
 |----------|-------------|----------|
 | `github_runner_token` | GitHub Runner Token | Yes |
 | `github_org` | Target GitHub organization Name only | Yes |
-| `runner_labels` | Labels to assign to runners | No |
-
-## Directory Structure
-
-```
-.
-├── main.tf           # Main Terraform configuration
-├── variables.tf      # Variable definitions
-├── outputs.tf        # Output definitions
-└── README.md         # This file
-```
+| `github_runner_labels` | Labels to assign to runners | No |
+| `github_runner_count` | Number of Runners | No |
