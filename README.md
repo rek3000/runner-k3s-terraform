@@ -1,13 +1,11 @@
 # K3s Runner Terraform Configuration
-
 This repository contains Terraform configurations for setting up self-hosted GitHub Actions runners on a K3s cluster. The setup automates the deployment of runners using Infrastructure as Code (IaC) principles.
 
 ## Prerequisites
 
-- Terraform installed (version >= 1.0.0)
-- Access to a K3s cluster
+- Terraform installed
 - GitHub account with repository access
-- Valid GitHub Personal Access Token (PAT)
+- GitHub Runner Token
 
 ## Features
 
@@ -58,3 +56,6 @@ terraform destroy
 | `github_org` | Target GitHub organization Name only | Yes |
 | `github_runner_labels` | Labels to assign to runners | No |
 | `github_runner_count` | Number of Runners | No |
+
+
+For more information about variables: `variables.tf`
