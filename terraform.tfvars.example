@@ -1,0 +1,11 @@
+# K3S Version
+k3s_version = "latest"
+
+# GitHub Configuration
+github_runner_token = ""
+github_runner_count = 3
+github_org          = "tdatanerd"
+github_runner_labels = ["k3s", "hm"]
+
+# Docker Configuration
+docker_network_cidr = "172.20.0.0/16"

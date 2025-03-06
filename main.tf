@@ -29,6 +29,7 @@ resource "docker_container" "k3s_server" {
     "server",
     "--disable", "traefik",
     "--disable", "servicelb",
+    "--disable", "metrics-server",  # Disable metrics-server to avoid errors
     "--tls-san", "0.0.0.0",
     "--kube-apiserver-arg", "feature-gates=TTLAfterFinished=true"
   ]
@@ -53,6 +54,17 @@ resource "docker_container" "k3s_server" {
     internal = 6443
     external = 6443
   }
+
+  # More reliable health check - just check if the process exists
+  healthcheck {
+    test         = ["CMD-SHELL", "pidof k3s || exit 1"]
+    interval     = "30s"
+    timeout      = "10s"
+    start_period = "60s"  # Increased to allow more startup time
+    retries      = 3
+  }
+
+  restart = "unless-stopped"
 }
 
 # GitHub Runners
@@ -83,6 +95,17 @@ resource "docker_container" "github_runners" {
   networks_advanced {
     name = docker_network.k3s_network.name
   }
+
+  # Simplified health check that just checks if the container process is running
+  healthcheck {
+    test         = ["CMD", "pgrep", "-f", "Runner.Listener"]
+    interval     = "30s"
+    timeout      = "10s"
+    start_period = "60s"  # Increased to allow more startup time
+    retries      = 3
+  }
+
+  restart = "unless-stopped"
 
   depends_on = [docker_container.k3s_server]
 }
