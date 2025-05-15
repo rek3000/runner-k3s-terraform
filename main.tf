@@ -30,8 +30,7 @@ resource "docker_container" "k3s_server" {
     "--disable", "traefik",
     "--disable", "servicelb",
     "--disable", "metrics-server",  # Disable metrics-server to avoid errors
-    "--tls-san", "0.0.0.0",
-    "--kube-apiserver-arg", "feature-gates=TTLAfterFinished=true"
+    "--tls-san", "0.0.0.0"
   ]
 
   env = [
@@ -81,7 +80,7 @@ resource "docker_container" "github_runners" {
     "LABELS=${join(",", var.github_runner_labels)}",
     "RUNNER_GROUP=default",
     "RUNNER_SCOPE=org",
-    "EPHEMERAL=1",
+    "EPHEMERAL=0",
     "DISABLE_AUTO_UPDATE=1",
     "DOCKER_HOST=unix:///var/run/docker.sock",
     "KUBECONFIG=/etc/rancher/k3s/kubeconfig.yaml"

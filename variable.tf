@@ -45,7 +45,7 @@ variable "github_runner_labels" {
 variable "docker_network_cidr" {
   description = "Docker network CIDR"
   type        = string
-  default     = "172.20.0.0/16"
+  default     = "172.21.0.0/16"
 }
 
 # variable "runner_resources" {
@@ -55,7 +55,7 @@ variable "docker_network_cidr" {
 #     memory = number
 #   })
 #   default = {
-#     cpu    = 2
-#     memory = 4096
+#     cpu    = 1
+#     memory = 2048
 #   }
 # }
