@@ -80,7 +80,7 @@ resource "docker_container" "github_runners" {
     "LABELS=${join(",", var.github_runner_labels)}",
     "RUNNER_GROUP=default",
     "RUNNER_SCOPE=org",
-    "EPHEMERAL=0",
+    "EPHEMERAL=false",
     "DISABLE_AUTO_UPDATE=1",
     "DOCKER_HOST=unix:///var/run/docker.sock",
     "KUBECONFIG=/etc/rancher/k3s/kubeconfig.yaml"
